@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test_auth/auth/firebase_auth.dart';
+import 'package:flutter_test_auth/main.dart';
+import 'package:flutter_test_auth/screens/login_page.dart';
 import 'package:provider/provider.dart';
 import '../auth/firebase_auth.dart';
 
@@ -17,15 +19,9 @@ class _RegisterViewState extends State<RegisterView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/backgroundImage.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -33,8 +29,16 @@ class _RegisterViewState extends State<RegisterView> {
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: TextField(
                 controller: emailController,
+                cursorColor: Colors.grey,
                 decoration: const InputDecoration(
+                  labelStyle: TextStyle(color: Colors.grey),
                   labelText: "Email",
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
                 ),
               ),
             ),
@@ -43,18 +47,26 @@ class _RegisterViewState extends State<RegisterView> {
               child: TextField(
                 controller: passwordController,
                 obscureText: true,
+                cursorColor: Colors.grey,
                 decoration: const InputDecoration(
-                  labelText: "Password",
+                  labelStyle: TextStyle(color: Colors.grey),
+                  labelText: "Mot de passe",
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
                 ),
               ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height / 50),
+            SizedBox(height: MediaQuery.of(context).size.height / 20),
             Container(
               width: MediaQuery.of(context).size.width / 1.4,
               height: 44,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
-                color: Colors.blue,
+                color: accentColor,
               ),
               child: MaterialButton(
                 onPressed: () {
@@ -65,7 +77,7 @@ class _RegisterViewState extends State<RegisterView> {
                       );
                 },
                 child: const Text(
-                  "Sign Up",
+                  "S'incrire",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18.0,
@@ -73,6 +85,20 @@ class _RegisterViewState extends State<RegisterView> {
                 ),
               ),
             ),
+            const SizedBox(
+              height: 40,
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LoginView(),
+                  ),
+                );
+              },
+              child: const Text('Déjà un compte ? Se connecter.'),
+            )
           ],
         ),
       ),

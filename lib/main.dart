@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import 'auth/firebase_auth.dart';
 import 'screens/opening_page.dart';
 
+const accentColor = Color(0xffe50914);
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -28,9 +30,11 @@ class MyApp extends StatelessWidget {
           initialData: null,
         )
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
         title: 'FlutterFire Provider Template',
-        home: OpeningView(),
+        theme: ThemeData.dark(),
+        debugShowCheckedModeBanner: false,
+        home: const OpeningView(),
       ),
     );
   }
